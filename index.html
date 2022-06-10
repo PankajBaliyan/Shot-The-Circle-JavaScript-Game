@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>JS Assignment</title>
+</head>
+
+<body>
+    <div id="outerdiv">
+        <div id="maindiv">
+            <h1>Shot the circle</h1>
+            <p id="tys">Test your skill. <br />How many boxes can you check in <span id="timeaccvalue">30</span>
+                seconds?</p>
+            <form id="timer" action="#">
+                <label for="Time"><strong>Time :</strong> </label>
+                <input type="number" name="display" value="30" id="Time" onblur="timemanage()" /><br />
+                <label for="score"><strong>Score :</strong> </label>
+                <input type="text" id="score" class="form1input" autocomplete="off" />
+                <p id="score1"></p>
+            </form>
+            <button id="startbtn" onclick="StartandTimer()" value="Start">Start Game</button><br />
+            <button id="stopbtn" onclick="StopandTimer()" disabled>Stop Game</button><br />
+            <button id="restrtbtn" onclick="restartgame()" disabled>Restart Game</button>
+            <p id="pstart">Push start to Play</p>
+            <br /><br />
+            <p id="result">Result Will be Shown here.</p>
+            <hr />
+            <div class="mainradio">
+                <div id="radiobtns"></div>
+            </div>
+            <hr />
+        </div>
+    </div>
+    <!-- LINKING OF JAVASCRIPT FILE  -->
+    <script src="./myscript.js"></script>
+</body>
+
+</html>
