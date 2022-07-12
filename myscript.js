@@ -90,7 +90,7 @@ function EndGame() {
   for (i = 0; i < allRadios.length; i++) {
     allRadios[i].disabled = true;
   }
-  Percentage();
+  mypercentage();
 }
 
 //THIS SECTION WILL CLICKS RANDOMLY (AS A SYSTEM)
