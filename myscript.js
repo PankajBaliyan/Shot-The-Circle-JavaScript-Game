@@ -41,6 +41,9 @@ for (i = 1; i <= 60; i++) {
 
 //WHEN YOU CLICK ON START BUTTON THIS SECTION WORKS.
 function StartGame() {
+  if(inputTime.value<=0){
+    alert("Time will be more than 0")
+  }
   inputScore.value = 0;
   inputTime.readOnly = true;
   endGameBtn.disabled = false;
@@ -71,6 +74,10 @@ function reduceTime() {
     }
     Percentage = (score / inputTimeValueStore) * 100;
     mypercentage();
+    score = 0;
+    inputScore.value = `${score}`;
+    startGameBtn.disabled = false;
+    endGameBtn.disabled = true;
   } else {
     inputTimeValue--;
     inputTime.value = inputTimeValue;
@@ -79,7 +86,6 @@ function reduceTime() {
 
 //WHEN YOU CLICK ON END GAME BUTTON THIS SECTION WORKS.
 function EndGame() {
-  inputScore.value = 0;
   startGameBtn.disabled = false;
   endGameBtn.disabled = true;
   clearInterval(intervalId);
@@ -91,6 +97,8 @@ function EndGame() {
     allRadios[i].disabled = true;
   }
   mypercentage();
+  score = 0;
+  inputScore.value = `${score}`;
 }
 
 //THIS SECTION WILL CLICKS RANDOMLY (AS A SYSTEM)
