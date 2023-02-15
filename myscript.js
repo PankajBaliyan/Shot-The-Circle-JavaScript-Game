@@ -1,4 +1,4 @@
-// DEFINE & DECLARE VERIABLES
+// DEFINE & DECLARE VARIABLES
 let inputTime = document.getElementById("inputTime");
 let radiobtns = document.getElementById("radiobtns");
 let endGameBtn = document.getElementById("stopButton");
@@ -18,7 +18,8 @@ let setAutoClickTime;
 let inputTimeValueStore;
 let systemClickedRadioID;
 
-//FUNCTION FOR UPDATE TIME IN TOP PARAGRAPH ACCOURDING TO USER INPUT TIME/DEFAULT TIME ON FIRST WINDOW LOAD
+
+//FUNCTION FOR UPDATE TIME IN TOP PARAGRAPH ACCORDING TO USER INPUT TIME/DEFAULT TIME ON FIRST WINDOW LOAD
 function updateTime() {
   inputScore.value = 0;
   valueAccordingTime.innerHTML = Number(inputTime.value);
