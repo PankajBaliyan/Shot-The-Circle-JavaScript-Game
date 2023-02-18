@@ -11,7 +11,7 @@ Using web languages like HTML, CSS, and JavaScript, this repository makes a shoo
 
 ## Authors
 
-- [@pankajkumar90](https://www.github.com/pankajkumar90)
+- [@PankajBaliyan](https://www.github.com/PankajBaliyan)
 
 
 ## Contributing
@@ -27,7 +27,7 @@ Please adhere to this project's `code of conduct`.
 
 https://shot-the-circle.vercel.app
 <br><br>
-https://github.com/Pankajkumar90/Shot-The-Circle-JavaScript-Game.git
+https://github.com/PankajBaliyan/Shot-The-Circle-JavaScript-Game.git
 
 
 ## Feedback
@@ -49,7 +49,7 @@ I learned many things while making this repository, i.e. how to do make a intera
 Clone the project
 
 ```bash
-  git clone https://github.com/Pankajkumar90/Shot-The-Circle-JavaScript-Game.git
+  git clone https://github.com/PankajBaliyan/Shot-The-Circle-JavaScript-Game.git
 ```
 
 Go to the project directory
