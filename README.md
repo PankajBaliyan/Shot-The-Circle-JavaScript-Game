@@ -27,7 +27,7 @@ Please adhere to this project's `code of conduct`.
 
 https://shot-the-circle.vercel.app
 <br><br>
-https://github.com/PankajBaliyan/Shot-The-Circle-JavaScript-Game.git
+https://pankajbaliyan.github.io/Shot-The-Circle-JavaScript-Game/
 
 
 ## Feedback
