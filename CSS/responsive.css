@@ -1,0 +1,50 @@
+/* MOBILE DEVICES  */
+@media (min-width:320px) and (max-width:480px) {
+    form>div {
+        width: 100px;
+    }
+
+    form input {
+        padding: 15px !important;
+        margin-top: 5px;
+    }
+
+    .parent button {
+        font-size: 13px;
+    }
+
+    #radiobtns {
+        padding-bottom: 12px;
+    }
+
+    #resultMessage {
+        margin: 5px 0px 5px 0px;
+    }
+
+    .bottom-test {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* TABLET DEVICES  & HIGH */
+@media (min-width:481px) {
+    form input {
+        padding: 15px !important;
+    }
+
+    #radiobtns {
+        padding-bottom: 12px;
+    }
+
+    #resultMessage {
+        margin: 5px 0px 5px 0px;
+    }
+
+    .bottom-test {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
