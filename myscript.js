@@ -18,32 +18,41 @@ let setAutoClickTime;
 let inputTimeValueStore;
 let systemClickedRadioID;
 
-
 //FUNCTION FOR UPDATE TIME IN TOP PARAGRAPH ACCORDING TO USER INPUT TIME/DEFAULT TIME ON FIRST WINDOW LOAD
+window.onload = updateTime;
 function updateTime() {
   inputScore.value = 0;
   valueAccordingTime.innerHTML = Number(inputTime.value);
 }
 
-//THIS SECTION IS FOR CREATE MATRIX FOR RADIO BUTTONS
-for (i = 1; i <= 60; i++) {
-  if ((i % 10) - 1 == 0) {
-    let lineBreak = document.createElement("br");
-    radiobtns.appendChild(lineBreak);
+// Create matrix for radio buttons
+for (let i = 1; i <= 60; i++) {
+  // Check if index is divisible by 10
+  if ((i % 10) + 1 === 1) {
+    // Create a string that represents the radio button and line break elements
+    const radioBtnString = `<input type="radio" class="radiogrp" name="radiogroup" id="${i}" disabled><br>`;
+    radiobtns.insertAdjacentHTML("beforeend", radioBtnString);
+  } else {
+    // Create a radio button element and append it to the parent element
+    const inputRadio = document.createElement("input");
+    inputRadio.setAttribute("type", "radio");
+    inputRadio.setAttribute("class", "radiogrp");
+    inputRadio.setAttribute("name", "radiogroup");
+    inputRadio.setAttribute("disabled", "");
+    inputRadio.setAttribute("id", `${i}`);
+    radiobtns.appendChild(inputRadio);
   }
-  let inputRadio = document.createElement("INPUT");
-  inputRadio.setAttribute("type", "radio");
-  inputRadio.setAttribute("class", "radiogrp");
-  inputRadio.setAttribute("name", "radiogroup");
-  inputRadio.setAttribute("disabled", "");
-  inputRadio.setAttribute("id", `${i}`);
-  radiobtns.appendChild(inputRadio);
 }
+
+
+
+
+
 
 //WHEN YOU CLICK ON START BUTTON THIS SECTION WORKS.
 function StartGame() {
-  if(inputTime.value<=0){
-    alert("Time will be more than 0")
+  if (inputTime.value <= 0) {
+    alert("Time will be more than 0");
   }
   inputScore.value = 0;
   inputTime.readOnly = true;
