@@ -94,32 +94,6 @@ function endGame() {
   inputScore.value = score;
 }
 
-// function autoclick() {
-//   score++;
-//   inputScore.value = score;
-// }
-
-// function reduceTime() {
-//   const inputTimeValue = Number(inputTime.value) - 1;
-//   inputTime.value = inputTimeValue;
-//   valueAccordingTime.textContent = inputTimeValue;
-
-//   if (inputTimeValue === 0) {
-//     endGame();
-//   }
-// }
-
-// function myPercentage() {
-//   const percentage = Math.round((score / 60) * 100);
-//   if (percentage >= 80) {
-//     resultMessage.textContent = "Congratulations!";
-//   } else if (percentage >= 60) {
-//     resultMessage.textContent = "Good job! Try again to get more scores.";
-//   } else {
-//     resultMessage.textContent = "Sorry, better luck next time.";
-//   }
-// }
-
 //THIS SECTION WILL CLICKS RANDOMLY (AS A SYSTEM)
 function autoClick() {
   let randomNumber = Math.floor(Math.random() * 60);
@@ -140,7 +114,7 @@ function reduceTime() {
       allRadios[i].checked = false;
     }
     Percentage = (score / inputTimeValueStore) * 100;
-    myPercentage();
+    resultMessage.innerHTML = Percentage >= 80 ? "Congratulations" : Percentage >= 60 ? "Good job & try again to get more scores" : "Sorry, better luck next time";
     score = 0;
     inputScore.value = `${score}`;
     startButton.disabled = false;
@@ -150,6 +124,14 @@ function reduceTime() {
     inputTime.value = inputTimeValue;
   }
 }
+
+
+
+
+
+
+
+
 
 //FUNCTION FOR ADDING AND REMOVING CLASS WHEN RADIO BUTTOS AUTO CLICK
 function systemClickedRadio(radioForClick) {
@@ -200,3 +182,13 @@ function myPercentage() {
     resultMessage.innerHTML = "Sorry, better luck next time";
   }
 }
+// function myPercentage() {
+//   const percentage = Math.round((score / 60) * 100);
+//   if (percentage >= 80) {
+//     resultMessage.textContent = "Congratulations!";
+//   } else if (percentage >= 60) {
+//     resultMessage.textContent = "Good job! Try again to get more scores.";
+//   } else {
+//     resultMessage.textContent = "Sorry, better luck next time.";
+//   }
+// }
