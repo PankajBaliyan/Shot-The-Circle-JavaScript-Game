@@ -1,13 +1,14 @@
 // DEFINE & DECLARE VARIABLES
-let inputTime = document.getElementById("inputTime");
+const startButton = document.getElementById("startButton");
+const inputTime = document.getElementById("inputTime");
+const inputScore = document.getElementById("inputScore");
+const endGameBtn = document.getElementById("stopButton");
+const allRadios = document.getElementsByClassName("radiogrp");
+const valueAccordingTime = document.getElementById("valueAccordingTime");
+
 let radiobtns = document.getElementById("radiobtns");
-let endGameBtn = document.getElementById("stopButton");
-let inputScore = document.getElementById("inputScore");
-let startGameBtn = document.getElementById("startButton");
-let allRadios = document.getElementsByClassName("radiogrp");
 let resultMessage = document.getElementById("resultMessage");
 let allRadioButtons = document.getElementsByName("radiogroup");
-let valueAccordingTime = document.getElementById("valueAccordingTime");
 let i;
 let userId;
 let score = 0;
@@ -44,33 +45,41 @@ for (let i = 1; i <= 60; i++) {
   }
 }
 
+// When you click on the start button, this section works.
+startButton.addEventListener("click", startGame);
 
-
-
-
-
-//WHEN YOU CLICK ON START BUTTON THIS SECTION WORKS.
-function StartGame() {
+function startGame() {
+  // Check if input time is valid
   if (inputTime.value <= 0) {
-    alert("Time will be more than 0");
+    alert("Time should be more than 0");
+    return;
   }
+
+  // Reset score
   inputScore.value = 0;
+
+  // Disable time input and enable end game button
   inputTime.readOnly = true;
   endGameBtn.disabled = false;
-  startGameBtn.disabled = true;
+  startButton.disabled = true;
+
+  // Store initial time value and start countdown
   inputTimeValueStore = inputTime.value;
   inputTimeValue = Number(inputTime.value);
-  setAutoClickTime = setInterval(autoclick, 1000);
-  valueAccordingTime.innerHTML = Number(inputTime.value);
+  valueAccordingTime.innerHTML = inputTimeValue;
+  intervalId = setInterval(reduceTime, 1000);
 
-  intervalId = window.setInterval(function () {
-    reduceTime();
-  }, 1000);
-
-  for (i = 0; i < allRadios.length; i++) {
+  // Start auto-click interval and enable radio buttons
+  setAutoClickTime = setInterval(autoClick, 1000);
+  for (let i = 0; i < allRadios.length; i++) {
     allRadios[i].disabled = false;
   }
+
 }
+
+
+
+
 
 //FUNCTION TO REDUCE TIME IN INPUT FIELD AFTER CLICK ON START GAME BTN
 function reduceTime() {
@@ -86,7 +95,7 @@ function reduceTime() {
     mypercentage();
     score = 0;
     inputScore.value = `${score}`;
-    startGameBtn.disabled = false;
+    startButton.disabled = false;
     endGameBtn.disabled = true;
   } else {
     inputTimeValue--;
@@ -96,7 +105,7 @@ function reduceTime() {
 
 //WHEN YOU CLICK ON END GAME BUTTON THIS SECTION WORKS.
 function EndGame() {
-  startGameBtn.disabled = false;
+  startButton.disabled = false;
   endGameBtn.disabled = true;
   clearInterval(intervalId);
   clearInterval(setAutoClickTime);
@@ -112,7 +121,7 @@ function EndGame() {
 }
 
 //THIS SECTION WILL CLICKS RANDOMLY (AS A SYSTEM)
-function autoclick() {
+function autoClick() {
   let randomNumber = Math.floor(Math.random() * 60);
   allRadioButtons[randomNumber].addEventListener(
     "click",
