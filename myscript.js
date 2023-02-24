@@ -1,13 +1,13 @@
 // DEFINE & DECLARE VARIABLES
 const startButton = document.getElementById("startButton");
+const endGameBtn = document.getElementById("stopButton");
 const inputTime = document.getElementById("inputTime");
 const inputScore = document.getElementById("inputScore");
-const endGameBtn = document.getElementById("stopButton");
 const allRadios = document.getElementsByClassName("radiogrp");
 const valueAccordingTime = document.getElementById("valueAccordingTime");
+const resultMessage = document.getElementById("resultMessage");
 
 let radiobtns = document.getElementById("radiobtns");
-let resultMessage = document.getElementById("resultMessage");
 let allRadioButtons = document.getElementsByName("radiogroup");
 let i;
 let userId;
@@ -47,7 +47,6 @@ for (let i = 1; i <= 60; i++) {
 
 // When you click on the start button, this section works.
 startButton.addEventListener("click", startGame);
-
 function startGame() {
   // Check if input time is valid
   if (inputTime.value <= 0) {
@@ -74,12 +73,61 @@ function startGame() {
   for (let i = 0; i < allRadios.length; i++) {
     allRadios[i].disabled = false;
   }
-
 }
 
+//WHEN YOU CLICK ON END GAME BUTTON THIS SECTION WORKS.
+endGameBtn.addEventListener("click", endGame);
+function endGame() {
+  startButton.disabled = false;
+  endGameBtn.disabled = true;
+  clearInterval(intervalId);
+  clearInterval(setAutoClickTime);
+  inputTime.value = 30;
+  inputTime.readOnly = false;
 
+  for (i = 0; i < allRadios.length; i++) {
+    allRadios[i].disabled = true;
+  }
 
+  myPercentage();
+  score = 0;
+  inputScore.value = score;
+}
 
+// function autoclick() {
+//   score++;
+//   inputScore.value = score;
+// }
+
+// function reduceTime() {
+//   const inputTimeValue = Number(inputTime.value) - 1;
+//   inputTime.value = inputTimeValue;
+//   valueAccordingTime.textContent = inputTimeValue;
+
+//   if (inputTimeValue === 0) {
+//     endGame();
+//   }
+// }
+
+// function myPercentage() {
+//   const percentage = Math.round((score / 60) * 100);
+//   if (percentage >= 80) {
+//     resultMessage.textContent = "Congratulations!";
+//   } else if (percentage >= 60) {
+//     resultMessage.textContent = "Good job! Try again to get more scores.";
+//   } else {
+//     resultMessage.textContent = "Sorry, better luck next time.";
+//   }
+// }
+
+//THIS SECTION WILL CLICKS RANDOMLY (AS A SYSTEM)
+function autoClick() {
+  let randomNumber = Math.floor(Math.random() * 60);
+  allRadioButtons[randomNumber].addEventListener(
+    "click",
+    systemClickedRadio(allRadioButtons[randomNumber])
+  );
+}
 
 //FUNCTION TO REDUCE TIME IN INPUT FIELD AFTER CLICK ON START GAME BTN
 function reduceTime() {
@@ -92,7 +140,7 @@ function reduceTime() {
       allRadios[i].checked = false;
     }
     Percentage = (score / inputTimeValueStore) * 100;
-    mypercentage();
+    myPercentage();
     score = 0;
     inputScore.value = `${score}`;
     startButton.disabled = false;
@@ -101,32 +149,6 @@ function reduceTime() {
     inputTimeValue--;
     inputTime.value = inputTimeValue;
   }
-}
-
-//WHEN YOU CLICK ON END GAME BUTTON THIS SECTION WORKS.
-function EndGame() {
-  startButton.disabled = false;
-  endGameBtn.disabled = true;
-  clearInterval(intervalId);
-  clearInterval(setAutoClickTime);
-  inputTime.value = 30;
-  inputTime.readOnly = false;
-
-  for (i = 0; i < allRadios.length; i++) {
-    allRadios[i].disabled = true;
-  }
-  mypercentage();
-  score = 0;
-  inputScore.value = `${score}`;
-}
-
-//THIS SECTION WILL CLICKS RANDOMLY (AS A SYSTEM)
-function autoClick() {
-  let randomNumber = Math.floor(Math.random() * 60);
-  allRadioButtons[randomNumber].addEventListener(
-    "click",
-    systemClickedRadio(allRadioButtons[randomNumber])
-  );
 }
 
 //FUNCTION FOR ADDING AND REMOVING CLASS WHEN RADIO BUTTOS AUTO CLICK
@@ -169,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //GIVE FEEDBACK ACCORDING PERCENTAGE
-function mypercentage() {
+function myPercentage() {
   if (Percentage >= 80) {
     resultMessage.innerHTML = "Congratulations";
   } else if (Percentage >= 60 && Percentage < 80) {
