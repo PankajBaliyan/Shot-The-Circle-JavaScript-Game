@@ -3,13 +3,11 @@ const startButton = document.getElementById("startButton");
 const endGameBtn = document.getElementById("stopButton");
 const inputTime = document.getElementById("inputTime");
 const inputScore = document.getElementById("inputScore");
-const allRadios = document.getElementsByClassName("radiogrp");
 const valueAccordingTime = document.getElementById("valueAccordingTime");
 const resultMessage = document.getElementById("resultMessage");
 
 let radiobtns = document.getElementById("radiobtns");
 let allRadioButtons = document.getElementsByName("radiogroup");
-let i;
 let userId;
 let score = 0;
 let intervalId;
@@ -45,6 +43,8 @@ for (let i = 1; i <= 60; i++) {
   }
 }
 
+const allRadios = document.querySelectorAll(".radiogrp");
+
 // When you click on the start button, this section works.
 startButton.addEventListener("click", startGame);
 function startGame() {
@@ -70,13 +70,38 @@ function startGame() {
 
   // Start auto-click interval and enable radio buttons
   setAutoClickTime = setInterval(autoClick, 1000);
-  for (let i = 0; i < allRadios.length; i++) {
-    allRadios[i].disabled = false;
-  }
+  allRadios.forEach((radio) => (radio.disabled = false));
 }
 
 //WHEN YOU CLICK ON END GAME BUTTON THIS SECTION WORKS.
-endGameBtn.addEventListener("click", endGame);
+endGameBtn.addEventListener("click", showModal);
+
+function showModal() {
+  // Get the modal
+  const modal = document.getElementById("modal-opened");
+  modal.style.display = "flex";
+  modal.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+  endGame();
+
+  const closeModalBtn = document.querySelector(".link-2");
+  const resetModalBtn = document.querySelector(".modal__btn");
+
+  // When the user clicks on <span> (x), close the modal
+  closeModalBtn.onclick = function () {
+    modal.style.display = "none";
+  }
+  resetModalBtn.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
+
 function endGame() {
   startButton.disabled = false;
   endGameBtn.disabled = true;
@@ -85,11 +110,17 @@ function endGame() {
   inputTime.value = 30;
   inputTime.readOnly = false;
 
-  for (i = 0; i < allRadios.length; i++) {
-    allRadios[i].disabled = true;
-  }
+  allRadios.forEach(function (radio) {
+    radio.disabled = true;
+  });
 
-  myPercentage();
+  resultMessage.innerHTML =
+    Percentage >= 80
+      ? `Congratulations.<br>Your Score : ${Math.round(Percentage)} %`
+      : Percentage >= 60
+        ? `Good job & try again to get more scores.<br>Your Score : ${Math.round(Percentage)} %`
+        : `Sorry, better luck next time.<br>Your Score : ${Math.round(Percentage)} %`;
+
   score = 0;
   inputScore.value = score;
 }
@@ -109,12 +140,20 @@ function reduceTime() {
     clearInterval(intervalId);
     clearInterval(setAutoClickTime);
     inputTime.readOnly = false;
-    for (i = 0; i < allRadios.length; i++) {
-      allRadios[i].disabled = true;
-      allRadios[i].checked = false;
+
+    for (const radio of allRadios) {
+      radio.disabled = true;
+      radio.checked = false;
     }
+
     Percentage = (score / inputTimeValueStore) * 100;
-    resultMessage.innerHTML = Percentage >= 80 ? "Congratulations" : Percentage >= 60 ? "Good job & try again to get more scores" : "Sorry, better luck next time";
+    showModal();
+    resultMessage.innerHTML =
+      Percentage >= 80
+        ? `Congratulations.<br>Your Score : ${Math.round(Percentage)} %`
+        : Percentage >= 60
+          ? `Good job & try again to get more scores.<br>Your Score : ${Math.round(Percentage)} %`
+          : `Sorry, better luck next time.<br>Your Score : ${Math.round(Percentage)} %`;
     score = 0;
     inputScore.value = `${score}`;
     startButton.disabled = false;
@@ -125,15 +164,7 @@ function reduceTime() {
   }
 }
 
-
-
-
-
-
-
-
-
-//FUNCTION FOR ADDING AND REMOVING CLASS WHEN RADIO BUTTOS AUTO CLICK
+//FUNCTION FOR ADDING AND REMOVING CLASS WHEN RADIO BUTTONS AUTO CLICK
 function systemClickedRadio(radioForClick) {
   radioForClick.classList.add("systemClickRadio");
   systemClickedRadioID = radioForClick.id;
@@ -142,53 +173,23 @@ function systemClickedRadio(radioForClick) {
   }, 1000);
 }
 
+
 // THIS SECTION WILL CLICKS (AS A USER) & UPDATE SCORE & CALCULATE PERCENTAGE
-document.addEventListener("DOMContentLoaded", function () {
-  Array.prototype.forEach.call(allRadios, function (element) {
+document.addEventListener("DOMContentLoaded", () => {
+  allRadios.forEach((element) => {
     element.addEventListener(
       "click",
-      function () {
+      () => {
         userId = element.id;
-        if (systemClickedRadioID == userId) {
-          score = score + 1;
-          if (score <= 0) {
-            score = 0;
-            inputScore.value = score;
-          } else {
-            inputScore.value = score;
-          }
+        if (systemClickedRadioID === userId) {
+          score++;
         } else {
-          score = score - 1;
-          if (score <= 0) {
-            score = 0;
-            inputScore.value = score;
-          } else {
-            inputScore.value = score;
-          }
+          score--;
         }
+        score = Math.max(0, score);
+        inputScore.value = `${score}`;
       },
       { once: true }
     );
   });
 });
-
-//GIVE FEEDBACK ACCORDING PERCENTAGE
-function myPercentage() {
-  if (Percentage >= 80) {
-    resultMessage.innerHTML = "Congratulations";
-  } else if (Percentage >= 60 && Percentage < 80) {
-    resultMessage.innerHTML = "Good job & try again to get more scores";
-  } else {
-    resultMessage.innerHTML = "Sorry, better luck next time";
-  }
-}
-// function myPercentage() {
-//   const percentage = Math.round((score / 60) * 100);
-//   if (percentage >= 80) {
-//     resultMessage.textContent = "Congratulations!";
-//   } else if (percentage >= 60) {
-//     resultMessage.textContent = "Good job! Try again to get more scores.";
-//   } else {
-//     resultMessage.textContent = "Sorry, better luck next time.";
-//   }
-// }

@@ -19,12 +19,35 @@
 
     #resultMessage {
         margin: 5px 0px 5px 0px;
+        font-size: 17px !important;
     }
 
     .bottom-test {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .modal {
+        width: 90% !important;
+    }
+
+    .modal__title {
+        font-size: 1.7rem !important;
+    }
+
+    .modal__text {
+        padding: 0px !important;
+    }
+
+    .link-2 {
+        font-size: 1.5rem !important;
+        top: 1rem !important;
+        right: 1rem !important;
+    }
+
+    .modal__text::before {
+        transform: translate(-38%, -53%) !important;
     }
 }
 
@@ -46,5 +69,27 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .modal {
+        width: 450px !important;
+    }
+
+    .modal__title {
+        font-size: 1.7rem !important;
+    }
+
+    .modal__text {
+        padding: 0px !important;
+    }
+
+    .link-2 {
+        font-size: 1.5rem !important;
+        top: 1rem !important;
+        right: 1rem !important;
+    }
+
+    .modal__text::before {
+        transform: translate(-38%, -53%) !important;
     }
 }
