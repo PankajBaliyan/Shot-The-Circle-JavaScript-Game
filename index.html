@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./favicon.png" type="image/icon type">
-    <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/responsive.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>Shot the circle</title>
 </head>
 
-<body onload="updateTime()">
+<body>
     <div id="maindiv">
 
         <h1 id="topHeader">Shot the circle</h1>
@@ -32,12 +32,12 @@
 
         <div class="parent">
             <div class="">
-                <button type="button" id="startButton" class="button-27" onclick="StartGame()" value="Start">Start
+                <button type="button" id="startButton" class="button-27" value="Start">Start
                     Game</button>
             </div>
 
             <div class="">
-                <button type="button" id="stopButton" class="button-27" onclick="EndGame()" disabled>End
+                <button type="button" id="stopButton" class="button-27" disabled>End
                     Game</button><br>
             </div>
 
@@ -47,7 +47,6 @@
             <p class="blink_me" id="pushStart">Enjoy!! Game :)</p>
         </div>
         <div class="bottom-test">
-            <p id="resultMessage">Result Will be Shown here.</p>
             <hr>
             <div class="mainradio">
                 <div id="radiobtns"></div>
@@ -55,6 +54,28 @@
             <hr>
         </div>
     </div>
+
+    <div class="modal-container" id="modal-opened">
+        <div class="modal">
+
+            <div class="modal__details">
+                <h1 class="modal__title">Result 👇</h1>
+                <p class="modal__description">All the result of this game will be displayed here, irrespective of how
+                    much you score.</p>
+            </div>
+
+            <p class="modal__text" id="resultMessage"></p>
+
+            <div class="reset-game-btn">
+                <button type="button" class="modal__btn">Reset Game &rarr;</button>
+            </div>
+
+            <a href="#modal-closed" class="link-2"></a>
+
+        </div>
+    </div>
+
+
     <script src="./myscript.js"></script>
 </body>
 
