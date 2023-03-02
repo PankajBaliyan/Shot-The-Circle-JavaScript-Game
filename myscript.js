@@ -166,6 +166,13 @@ function reduceTime() {
 
 //FUNCTION FOR ADDING AND REMOVING CLASS WHEN RADIO BUTTONS AUTO CLICK
 function systemClickedRadio(radioForClick) {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach((radio) => {
+    if (radio.checked) {
+      radio.checked = false; // Uncheck the selected radio button
+    }
+  });
+  // Click on the new radio button
   radioForClick.classList.add("systemClickRadio");
   systemClickedRadioID = radioForClick.id;
   setTimeout(() => {
@@ -189,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
         score = Math.max(0, score);
         inputScore.value = `${score}`;
       },
-      { once: true }
     );
   });
 });
